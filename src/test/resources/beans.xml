@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+>
+
+    <bean id="service" class="org.example.service.UserService" autowire="constructor" />
+    <bean id="repository" class="org.example.repository.UserRepository" />
+    <bean id="Proper" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="locations" value="db.properties"/>
+    </bean>
+    <bean id="xml-connector" class="org.example.pool.XMLConnectionPool" c:login="${login}" c:password="${password}" c:url="${url}"/>
+</beans>
