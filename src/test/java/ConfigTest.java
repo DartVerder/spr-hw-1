@@ -1,4 +1,4 @@
-import lombok.var;
+
 import org.example.config.ApplicationConfiguration;
 import org.example.pool.AnnotationConnectionPool;
 import org.example.pool.ApplicationConnectionPool;
@@ -9,6 +9,7 @@ import org.example.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.ClassPathResource;
@@ -22,10 +23,10 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class ConfigTest {
     @Test
     public void xmlConnector() throws SQLException {
-        final var context = new GenericApplicationContext();
+        final GenericApplicationContext context = new GenericApplicationContext();
         new XmlBeanDefinitionReader(context).loadBeanDefinitions("beans.xml");
         context.refresh();
-        final var bean = context.getBean("xml-connector", XMLConnectionPool.class);
+        final XMLConnectionPool bean = context.getBean("xml-connector", XMLConnectionPool.class);
         assertNotNull(bean);
         assertEquals("root", bean.getLogin());
         assertEquals("root", bean.getPassword());
@@ -36,8 +37,8 @@ public class ConfigTest {
     @Test
     public void annotationConnector() throws SQLException
     {
-        final var context = new AnnotationConfigApplicationContext("org.example");
-        final var bean = context.getBean(AnnotationConnectionPool.class);
+        final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("org.example");
+        final AnnotationConnectionPool bean = context.getBean(AnnotationConnectionPool.class);
         assertEquals("root", bean.getLogin());
         assertEquals("root", bean.getPassword());
         assertEquals("jdbc:mysql://localhost/test",bean.getDs().getUrl());
