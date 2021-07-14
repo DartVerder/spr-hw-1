@@ -2,10 +2,12 @@ package org.example.pool;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+import lombok.Getter;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
+@Getter
 public class XMLConnectionPool {
     private final String login;
     private final String password;
@@ -16,18 +18,6 @@ public class XMLConnectionPool {
         this.password=password;
         ds = new MysqlDataSource();
         ds.setURL(url);
-    }
-
-    public MysqlDataSource getDs() {
-        return ds;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
 }
