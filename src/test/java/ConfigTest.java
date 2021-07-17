@@ -3,8 +3,6 @@ import org.example.pool.AnnotationConnectionPool;
 import org.example.pool.ApplicationConnectionPool;
 import org.example.pool.ProgrammaticConnectionPool;
 import org.example.pool.XMLConnectionPool;
-import org.example.repository.UserRepository;
-import org.example.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -58,8 +56,6 @@ public class ConfigTest {
             return configurer;
         });
 
-        context.registerBean(UserRepository.class);
-        context.registerBean(UserService.class);
         context.registerBean(ProgrammaticConnectionPool.class, "${login}", "${password}","${url}");
         context.refresh();
 

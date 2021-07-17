@@ -1,11 +1,7 @@
 package org.example.pool;
-
-import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import lombok.Getter;
 
-import javax.sql.DataSource;
-import java.sql.SQLException;
 
 @Getter
 public class XMLConnectionPool {
